@@ -21,7 +21,9 @@ export const getAllPizzas = () => async (dispatch) => {
 export const addPizza = (pizza) => async (dispatch) => {
   dispatch({ type: "ADD_PIZZAS_REQUEST" });
   try {
-   await axios.post(addNewPizza, { pizza });
+    let res = await axios.post(addNewPizza, { pizza });
+
+    console.log(res)
 
     dispatch({ type: "ADD_PIZZAS_SUCCESS" });
   } catch (error) {

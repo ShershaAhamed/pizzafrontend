@@ -19,8 +19,7 @@ function AddNewPizza() {
   const { loading, error, success } = addPizzaState;
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     const pizza = {
       name, image, description, category,
       prices: {
@@ -30,14 +29,13 @@ function AddNewPizza() {
       }
     }
     dispatch(addPizza(pizza));
-    window.location.href = "/admin/pizzalist";
   }
   return (
     <div>
       {loading && (<Loader />)}
       {error && (<Error error="add New Pizza error" />)}
       {success && (<Success success="Pizza Added Successfully" />)}
-      <Form onSubmit={handleSubmit} className="bg-light p-4">
+      <Form  className="bg-light p-4">
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridName">
             <Form.Label>Name</Form.Label>
@@ -111,9 +109,7 @@ function AddNewPizza() {
           />
         </Form.Group>
 
-
-
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="button" onClick={handleSubmit}>
           Add New
         </Button>
       </Form>
